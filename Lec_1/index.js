@@ -1,15 +1,15 @@
-const DB = require('./db');
 const express = require('express');
-
+const DB = require('./db.js');
+const Student = require('./Student.schema.js');
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/",(req,res) =>{
-    res.send("Hello World!");
+// app.get("/",(req,res) =>{
+//     res.send("Hello World!");
 
-})
+// })
 
 app.get("/student" , async(req,res)=>{
     const data = await Student.find();
@@ -37,7 +37,7 @@ app.patch("/student/:id", async(req,res) =>{
 app.delete("/student/:id", async(req,res) =>{
     let {id} = req.params
     const data = await Student.findByIdAndDelete(id);
-    res.send("Deleted Successfully");
+    res.send(data);
 });
 
 
