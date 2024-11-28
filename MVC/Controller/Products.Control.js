@@ -20,6 +20,11 @@ const getProductId = async(req,res) =>{
 }
 
 const postProduct = async(req,res) =>{
+console.log(req.file);
+
+    if(req.file){
+        req.body.Img = req.file.path
+    }
     try {
         let product = await Product.create(req.body);
         res.status(201).send(product);

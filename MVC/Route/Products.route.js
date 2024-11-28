@@ -6,7 +6,7 @@ const ProductRoute = Route();
 
 ProductRoute.get('/',getProducts);
 ProductRoute.get('/:Productid',getProductId);
-ProductRoute.post('/',upload.single(), postProduct);
+ProductRoute.post('/',upload.single("Img"), postProduct);
 ProductRoute.patch('/:Productid',patchProduct);
 ProductRoute.delete('/:Productid',deleteProduct);
 
