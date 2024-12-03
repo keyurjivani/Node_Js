@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+</head>
+<body>
+    <h1>Recipe List</h1>
+    <div id="parent"></div>
+
+    <script>
+        fetch('/recipe/all')
+            .then(res => res.json())
+            .then(data => {
+                const parent = document.getElementById('parent');
+                data.forEach(recipe => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h2>${recipe.name}</h2>
+                        <p>${recipe.description}</p>
+                        <p>Preparation Time: ${recipe.preparationTime}</p>
+                        <p>Cooking Time: ${recipe.cookingTime}</p>
+                        <img src="${recipe.imageUrl}" alt="${recipe.name}" width="200">
+                        <p>Country: ${recipe.country}</p>
+                        <p>Veg: ${recipe.veg}</p>
+                    `;
+                    parent.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>

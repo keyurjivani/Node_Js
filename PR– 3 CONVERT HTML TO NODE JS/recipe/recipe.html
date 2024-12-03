@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <h1>Add a Recipe</h1>
+    <form action="/recipe/add" method="POST">
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="text" name="description" placeholder="Description" required><br>
+        <input type="text" name="preparationTime" placeholder="Preparation Time" required><br>
+        <input type="text" name="cookingTime" placeholder="Cooking Time" required><br>
+        <input type="text" name="imageUrl" placeholder="Image URL" required><br>
+        <input type="text" name="country" placeholder="Country" required><br>
+        <label>Veg:</label>
+        <select name="veg">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br>
+        <button type="submit">Add Recipe</button>
+    </form>
+</body>
+</html>
