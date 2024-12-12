@@ -53,4 +53,19 @@ const DeleteBook = async(req,res)=>{
     }
 }
 
-module.exports = { getStore, GetBook, GetBookById, AddBook, UpdateBook, DeleteBook }
+const filterBooks = async (req, res) => {
+    const { author, category, title, price } = req.query;
+    let query = {};
+    if (author) query.author = author;
+    if (category) query.category = category;
+    if (title) query.title = { $regex: title, $options: 'i' };
+
+    let books = await Book.find(query);
+
+    if (price) {
+        books = price === "lth" ? books.sort((a, b) => a.price - b.price) : books.sort((a, b) => b.price - a.price);
+    }
+    res.json(books);
+};
+
+module.exports = { getStore, GetBook, GetBookById, AddBook, UpdateBook, DeleteBook, filterBooks }
