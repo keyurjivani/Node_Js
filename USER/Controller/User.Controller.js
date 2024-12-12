@@ -14,18 +14,22 @@ const signup = (req, res) => {
 };
 
 const createUser = async(req, res) => {
-    const {email} = req.body;
-    let isexist = await User.findOne({email: email});
-    try {
-        if(!isexist){
-            let userData = await User.create(req.body)
-            res.send(userData);
-        }else{
-            res.status(400).send({message: 'Email already exists.'});
-        }
-    } catch (error) {
-        console.error(error);
-    }   
+   try {
+     const {email} = req.body;
+     let isExist = await User.findOne({email});
+ 
+     if(!isExist) {
+         let userData = await User.create(req.body)
+         res.send(userData);
+     }
+     else {
+         res.send("User already exist...");
+     }
+   } catch (error) {
+    
+   }
+   
+     
 }
 
 const getUser = async (req, res) => {

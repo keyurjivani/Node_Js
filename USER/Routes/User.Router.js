@@ -7,10 +7,10 @@ userRouter.get('/login', login);
 userRouter.get('/signup', signup);
 
 userRouter.get('/', getUser);
-userRouter.get('/user/:id', getUserById);
-userRouter.post('/adduser', createUser);
-userRouter.patch('/update/:id', updateUser);
-userRouter.delete('/delete/:id', deleteUser);
+userRouter.get('/:id', getUserById);
+userRouter.post('/', createUser);
+userRouter.patch('/:id', updateUser);
+userRouter.delete('/:id', deleteUser);
 
 module.exports = userRouter;
 
