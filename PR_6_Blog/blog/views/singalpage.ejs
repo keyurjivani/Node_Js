@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= singleBlog.title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="blog">
+        <img id="img" src="<%= singleBlog.image %>" alt="<%= singleBlog.title %>">
+        <h3 id="title"><%= singleBlog.title %></h3>
+        <span id="category"><%= singleBlog.category %></span>
+        <p id="content"><%= singleBlog.content %></p>
+        <button id="like" onclick="likeBlog('<%= singleBlog._id %>')">Like</button>
+        <span id="count"><%= singleBlog.likes || 0 %></span>
+
+        <form id="comment" action="/blog/comment/<%= singleBlog._id %>" method="POST">
+            <textarea name="comment" placeholder="Add your comment" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        async function likeBlog(blogId) {
+            const response = await fetch(`/blog/like/${blogId}`, { method: 'POST' });
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById('count').textContent = data.likes;
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+</html>

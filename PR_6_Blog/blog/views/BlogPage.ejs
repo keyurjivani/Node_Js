@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blogs</title>
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <script>
+        // Function to handle category filtering
+        function filterCategory(category) {
+            window.location.href = `/blog/blogs?category=${category}`;
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- Filters Section -->
+    <div id="filters">
+        <button onclick="filterCategory('all')">All</button>
+        <button onclick="filterCategory('technology')">Technology</button>
+        <button onclick="filterCategory('sports')">Sports</button>
+        <button onclick="filterCategory('health')">Health</button>
+        <!-- Add more categories as needed -->
+    </div>
+
+    <!-- Blog List -->
+    <div id="parent-box">
+        <% blogs.forEach(blog => { %>
+            <div class="list">
+                <img src="<%= blog.image %>" alt="Blog Image" class="img">
+                <p class="title"><%= blog.title %></p>
+                <p class="category"><strong>Category:</strong> <%= blog.category %></p>
+                <a href="/blog/singleBlog/<%= blog._id %>">Read More</a>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
