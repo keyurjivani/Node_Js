@@ -155,3 +155,15 @@ const BlogCommentpatch = async (req, res) => {
     }
 }
 
+module.exports = {
+    blogCreate,
+    getBlog,
+    getBlogById,
+    getBlogcategory,
+    deleteBlog,
+    patchBlog,
+    BlogLike,
+    BlogComment,
+    BlogLikePatch,
+    BlogCommentpatch,
+ };

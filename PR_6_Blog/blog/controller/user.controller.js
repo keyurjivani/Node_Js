@@ -44,3 +44,6 @@ const login = async (req, res) => {
 const getLoginPage = (req, res) => {
     res.render("login");
 };
+
+
+module.exports = { Signup, login, getLoginPage };
