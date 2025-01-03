@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const DB = require('./Config/DB');
 const userRouter = require('./Routes/User.Router');
@@ -9,13 +10,14 @@ const app = express();
 app.use(cookies());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
+app.use(cors({ origin: 'http://127.0.0.1:3000' }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/user", userRouter)
+app.use("/", userRouter)
 
 app.get("/", isLogin, (req, res)=>{
     let {username}=req.cookies;
